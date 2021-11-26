@@ -5,7 +5,7 @@ const userNameCheck=(req,res,next)=>{
     if(userName==null){
         res.send("can't identify username please check while register");
     }
-    if(userName.length>15||userName.length<4){
+    else if(userName.length>15||userName.length<4){
         res.send("username characters must be between 4 to 15")
     }
     else{
@@ -13,9 +13,12 @@ const userNameCheck=(req,res,next)=>{
     }
 }
 const emailCheck=(req,res,next)=>{
-    const Email = req.body.email;
+    const email = req.body.email;
+    if(email==null){
+        res.send(" can't identify the email plese enter the email");
+    }
    // console.log(Email.length)
-    if(validator.validate(Email)){
+   else if(validator.validate(email)){
         next();
     }
    /* if(Email.length<=10 || Email.length>=20){
@@ -30,7 +33,7 @@ const passwordCheck=(req,res,next)=>{
     if(password==null){
         res.send(" can't identify the password please enter the passwrd")
     }
-    if( password.length<10|| password.length>20){
+    else if( password.length<10|| password.length>20){
         res.send("password must be between 10 and 20 characters")
     }
     else{
